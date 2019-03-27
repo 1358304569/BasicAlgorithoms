@@ -7,17 +7,19 @@ import random,math
 # 基于二叉堆结构，主要运用了完全二叉树的性质：
 # 根节点从 1 开始，则节点序号为 i 的左孩子序号为 2i，右孩子为 2i+1；
 # 根节点从 0 开始，则节点序号为 i 的左孩子序号为 2i+1，右孩子为 2i+2；
-# 最大堆：
+
+# 二叉堆分为最大堆、最小堆，最大堆用于排序，最小堆用于实现优先队列
+# 最大堆：根节点大于两个孩子节点，最小堆反之。
+
+# 堆排序主要分为三步，：
+1、将待排序列表构建成一个大顶堆；
+2、将堆顶记录（最大值）与当前未经排序子序列的最后一个记录交换
+3、再将剩下的 n-1 个元素重新构建为大顶堆，重复第二步，
+其中关键部分就是如何构建大顶堆（HeapAdjust）
+
 """
 #网上找的打印树的一个函数，很好用
 def print_tree(array): #打印堆排序使用
-    '''
-    深度 前空格 元素间空格
-    1     7       0
-    2     3       7
-    3     1       3
-    4     0       1
-    '''
     # first=[0]
     # first.extend(array)
     # array=first
@@ -36,6 +38,7 @@ def print_tree(array): #打印堆排序使用
         index += offset
         print()
 
+
 def swap(nums, i, j):
     nums[i], nums[j] = nums[j], nums[i]
     return nums
@@ -50,7 +53,7 @@ def HeapAdjust(nums, start, end):
         # if nums[j] < nums[j+1]:         # j 会 out of range
         if j < end and (nums[j] < nums[j + 1]):
             j += 1
-        # 孩子比双亲大，交换
+        # 孩子比跟节点大，交换
         if temp < nums[j]:
             nums[i] = nums[j]
             i = j
@@ -62,22 +65,30 @@ def HeapAdjust(nums, start, end):
 def HeapSort(nums):
     n = len(nums)-1
     # 完全二叉树性质，第n/2个为双亲节点
+    # 第一次构建为顶大堆
     for i in range(int(n/2), 0, -1):
         HeapAdjust(nums, i, n)
 
+    # 将根节点（最大值）与最后一个节点交换，重新构建大顶堆
     for j in range(n, 0, -1):
         nums = swap(nums, 1, j)
         HeapAdjust(nums, 1, j-1)
     return nums
 
-# 原始数据
-# nums = [0, 20, 10, 60, 100, 90, 30, 40, 50, 70, 80]
-nums = [x*10 for x in range(1,11)]
-random.shuffle(nums)
-nums.insert(0, 0)
-print(nums)
-# print_tree(nums)
-print("===========排序后=================")
-nums = HeapSort(nums)
-# print_tree(nums)
-print(nums)
+# 测试数据
+def start():
+    nums = [x*10 for x in range(1,11)]
+    random.shuffle(nums)
+    # 此处插入0占位，使得根节点从1开始！！
+    nums.insert(0, 0)
+    print(nums)
+    print_tree(nums)
+    print("===========排序后=================")
+    nums = HeapSort(nums)
+    print_tree(nums)
+    print(nums)
+
+if __name__ == '__main__':
+    start()
+
+
