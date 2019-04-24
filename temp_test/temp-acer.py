@@ -192,21 +192,106 @@ anykey = msvcrt.getch()
 # 	print("try again")
 
 # 第二种用法
-print("按任意键结束：")
-oanykey = ord(anykey)
-print(type(oanykey))    # int类型
-print(oanykey)   #
+# print("按任意键结束：")
+# oanykey = ord(anykey)
+# print(type(oanykey))    # int类型
+# print(oanykey)   #
 
-if oanykey in range(0,256):
-	print("run run")
-	sys.exit()
-else:
-	print("try again")
+# if oanykey in range(0,256):
+# 	print("run run")
+# 	sys.exit()
+# else:
+# 	print("try again")
 
 
 # enter--b'\r'
 # space ---b' '
 # tab--b'\t'
+
+
+# ---------------------12、tkinter 模块中的message测试---------------------
+from tkinter import *
+import tkinter.messagebox
+
+
+# init_window = Tk()
+# init_window.title("批量邮件发送 - By 小周")
+# init_window.geometry('400x300+400+300')
+# init_window.attributes('-alpha',1)
+
+
+# # 	# box系列
+# # 圆圈蓝色感叹号
+# # tkinter.messagebox.showinfo(title="温馨提示",message="试用期已过，如需续用，请联系作者邮箱：\n小周 <1358304569@qq.com>")
+# # 三角黄色感叹号
+# # tkinter.messagebox.showwarning(title="温馨提示",message="试用期已过，如需续用，请联系作者邮箱：\n小周 <1358304569@qq.com>")
+# # 圆圈红色打×
+# tkinter.messagebox.showerror(title="温馨提示",message="试用期已过，如需续用，请联系作者邮箱：\n小周 <1358304569@qq.com>")
+# init_window.mainloop()
+
+
+# ---------------------13、倒计时 弹窗---------------------
+
+# def if_expired(end_time):
+# 	cur_time = int(time.time())
+# 	left_time = end_time - cur_time
+
+# 	if left_time <= 0:
+# 		init_window = Tk()
+# 		init_window.title("批量邮件发送 - By 小周")
+# 		init_window.geometry('400x300+400+300')
+# 		init_window.attributes('-alpha',1)
+# 		tkinter.messagebox.showerror(title="温馨提示",message="试用期已过，如需续用，请联系作者邮箱：\n小周 <1358304569@qq.com>")
+# 		init_window.mainloop()
+# 		print("已过期，提示完")
+# 		sys.exit()
+# 	else:
+# 		pass
+
+# end_time = "2018-09-09 13:50:30"
+# end_time = time.strptime(end_time,"%Y-%m-%d %H:%M:%S")
+# end_time = int(time.mktime(end_time))
+# if_expired(end_time)
+# print("判断完后")
+
+
+
+# ---------------------14、函数调用和返回测试---------------------
+
+# 1、没有return
+# def my_swap(x, y):
+# 	x, y = y, x
+# print(my_swap(1, 2))			# None
+
+# 2、有 return，直接打印
+# def my_swap(x, y):
+# 	x, y = y, x
+# 	return x, y
+
+# print(my_swap(1, 2))			# (2, 1)
+
+
+# # 3、有 return, 函数调用
+# l1 = [1, 2]
+# for i in range(len(l1)-1):
+# 	my_swap(l1[i], l1[i+1])
+
+# print(l1)			# [1, 2]
+
+# # 4、有 return, 函数调用，再返回
+# l2 = [1, 2]
+# for i in range(len(l2)-1):
+# 	l2[i], l2[i+1] = my_swap(l2[i], l2[i+1])
+
+# print(l2)			# [2, 1]
+
+
+
+
+
+
+
+
 
 
 
